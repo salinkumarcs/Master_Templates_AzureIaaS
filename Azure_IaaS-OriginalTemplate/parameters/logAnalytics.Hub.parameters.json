@@ -1,0 +1,36 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "value": "<<customerCode>>-UAE-HUB-LAW-001"
+    },
+    "serviceTier": {
+      "value": "PerGB2018"
+    },
+    "location": {
+      "value": "UAE North"
+    },
+    "resourceGroupName": {
+      "value": "<<customerCode>>-UAE-HUB-ARG-Administration"
+    },
+    "subscriptionID": {
+      "value": "<<ProdSubscriptionID>>"
+    },
+    "solutionTypes": {
+      "value": [
+        "SQLAssessment",
+        "ADAssessment",
+        "NetworkMonitoring",
+        "Office365",
+        "DnsAnalytics",
+        "ADReplication",
+        "AzureNSGAnalytics",
+        "Security",
+        "AzureActivity",
+        "ChangeTracking",
+        "KeyVaultAnalytics"
+      ]
+    }
+  }
+}

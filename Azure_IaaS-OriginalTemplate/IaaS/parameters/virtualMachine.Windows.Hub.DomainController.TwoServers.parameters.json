@@ -1,0 +1,101 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "VMs": {
+      "value": [
+        {
+          "name": "<<customerCode>>AZDC01",
+          "location": "uaenorth",
+          "virtualNetworkResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Network",
+          "virtualNetworkName": "<<customerCode>>-UAE-HUB-VNT-10.10.0.0",
+          "subNetName": "Data",
+          "diagnosticsStorageAccountResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Administration",
+          "diagnosticsStorageAccount": "<<customerCode>>uaehubsta001",
+          "logAnalyticsWorkspaceName": "<<customerCode>>-UAE-HUB-LAW-001",
+          "logAnalyticsResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Administration",
+          "recoveryServicesVaultResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Backup",
+          "recoveryServicesVaultName": "<<customerCode>>-UAE-HUB-RSV-001",
+          "recoveryServicesBackupPolicy": "<<customerCode>>-CustomBackupPolicy",
+          "osDiskType": "Standard_LRS",
+          "numberOfDataDisks": 1
+        },
+        {
+          "name": "<<customerCode>>AZDC02",
+          "location": "uaenorth",
+          "virtualNetworkResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Network",
+          "virtualNetworkName": "<<customerCode>>-SYD-HUB-VNT-10.10.0.0",
+          "subNetName": "Data",
+          "diagnosticsStorageAccountResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Administration",
+          "diagnosticsStorageAccount": "<<customerCode>>uaehubsta001",
+          "logAnalyticsWorkspaceName": "<<customerCode>>-UAE-HUB-LAW-001",
+          "logAnalyticsResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Administration",
+          "recoveryServicesVaultResourceGroup": "<<customerCode>>-UAE-HUB-ARG-Backup",
+          "recoveryServicesVaultName": "<<customerCode>>-UAE-HUB-RSV-001",
+          "recoveryServicesBackupPolicy": "<<customerCode>>-CustomBackupPolicy",
+          "osDiskType": "Standard_LRS",
+          "numberOfDataDisks": 1
+        }
+      ]
+    },
+    "adminUsername": {
+      "value": "<<customerCode>>_AzureAdmin"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/<<ProdSubscriptionID>>/resourceGroups/<<customerCode>>-UAE-HUB-ARG-Security/providers/Microsoft.KeyVault/vaults/<<customerCode>>-UAE-HUB-AKV-001"
+        },
+        "secretName": "virtualMachinePassword"
+      }
+    },
+    "OSPublisher":{
+      "value": "MicrosoftWindowsServer"
+    },
+    "OSOffer":{
+      "value": "WindowsServer"
+    },
+    "OSVersion": {
+      "value": "2019-Datacenter"
+    },
+    "deployAvailabilitySet": {
+      "value": false
+    },
+    "availabilitySetName": {
+      "value": "<<customerCode>>-UAE-HUB-AVS-001"
+    },
+    "vmSize": {
+      "value": "Standard_D1_v2"
+    },
+    "sizeOfDataDisk": {
+      "value": 32
+    },
+    "dataDiskType":{
+      "value": "Standard_LRS"
+    },
+    "coreSubscriptionID": {
+      "value": "<<ProdSubscriptionID>>"
+    },
+    "dataDiskURI": {
+      "value": "https://<<preCreatedStorageAccount>>.blob.core.windows.net/<<preCreatedStorageContainer>>/IaaS/nestedTemplates/virtualMachine.output.dataDisks.json"
+    },
+    "backupVM": {
+      "value": true
+    },
+    "applyHUB": {
+      "value": true
+    },
+    "deployDSC": {
+      "value": true
+    },
+    "dscScript": {
+      "value": "DomainController.ps1"
+    },
+    "dscPackageUri": {
+      "value": "https://<<preCreatedStorageAccount>>.blob.core.windows.net/<<preCreatedStorageContainer>>/packages/dsc.DomainController.zip"
+    },
+    "_sasToken": {
+      "value": "<<sasTokenfromPreCreatedStorageAccount>>"
+    }
+  }
+}

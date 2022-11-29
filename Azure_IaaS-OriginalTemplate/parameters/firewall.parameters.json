@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "<<Location Name>>"
+        },
+        "resourceGroup": {
+            "value": "<<Resource Group Name>>"
+        },
+        "azureFirewallName": {
+            "value": "<<Firewall Name>>"
+        },
+        "azureFirewallTier": {
+            "value": "<<Tier>>"
+        },
+        "vnetName": {
+            "value": "<<VNET Name>>"
+        },
+        "vnetAddressSpace": {
+            "value": "<<Address Space>>"
+        },
+        "subnetAddressSpace": {
+            "value": "<<Subnet>>"
+        },
+        "zones": {
+            "value": []
+        },
+        "publicIpAddressName": {
+            "value": "<<Public IP Name>>"
+        },
+        "publicIpZones": {
+            "value": []
+        }
+    }
+}

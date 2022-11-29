@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "VnetResourceGroup": {
+      "value": null
+    },
+    "VnetName": {
+      "value": null
+    },
+    "SubnetName": {
+      "value": null
+    },
+    "VMImageName": {
+      "value": null
+    },
+    "AdminUsername": {
+      "value": null
+    },
+    "AdminPassword": {
+      "value": null
+    },
+    "VMNames": {
+      "value": null
+    }
+  }
+}

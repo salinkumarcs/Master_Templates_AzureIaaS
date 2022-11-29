@@ -1,0 +1,42 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "logAnalyticsWorkspaceName": {
+            "value":"<<customerCode>>-UAE-HUB-LAW-001"
+        },
+        "logAnalyticsResourceGroup": {
+            "value":"<<customerCode>>-UAE-HUB-ARG-Administration"
+        },
+        "logAnalyticsSubscriptionID": {
+            "value":"<<HubSubscriptionID>>"
+        },
+        "recoverySettings": {
+            "value": {
+                "recoveryVaults": [
+                    {
+                        "vaultName": "<<customerCode>>-UAE-PRD-RSV-001",
+                        "policyName": "<<customerCode>>-CustomBackupPolicy",
+                        "location": "UAE North",
+                        "scheduleRunTimes": [
+                            "2017-01-26T05:30:00Z"
+                        ],
+                        "dailyRetentionDurationCount": 31,
+                        "daysOfTheWeek": [
+                            "Friday"
+                        ],
+                        "weeklyRetentionDurationCount": 5,
+                        "monthlyRetentionDurationCount": 12,
+                        "monthsOfYear": [
+                            "December"
+                        ],
+                        "yearlyRetentionDurationCount": 7,
+                        "daysLogged": 365,
+                        "storageAccount": "<<customerCodeLowerCase>>uaeprdsta001",
+                        "storageAccountARG": "<<customerCode>>-UAE-PRD-ARG-Administration"
+                    }
+                ]
+            }
+        }
+    }
+}

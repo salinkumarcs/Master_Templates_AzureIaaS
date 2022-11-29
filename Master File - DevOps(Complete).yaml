@@ -1,0 +1,21 @@
+name: $(BuildDefinitionName)_$(date:yyyyMMdd)$(rev:.r)
+trigger: none
+pr: none
+stages :        
+  - stage: arm_template_deploy
+    jobs:
+      - job: arm_template_deploy
+        steps:
+              - checkout: self
+              - task: AzureResourceManagerTemplateDeployment@3
+                inputs:
+                  deploymentScope: 'Resource Group'
+                  azureResourceManagerConnection: 'your connection name'
+                  subscriptionId: 'Your-Subscription-ID'
+                  action: 'Create Or Update Resource Group'
+                  resourceGroupName: 'rg name'
+                  location: 'name'
+                  templateLocation: 'Linked artifact'
+                  csmFile: '$(System.DefaultWorkingDirectory)/template/abc.json'
+                  csmParametersFile: '$(System.DefaultWorkingDirectory)/template/abc.parameters.json'
+                  deploymentMode: 'Complete'

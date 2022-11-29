@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "bastionHosts_name": {
+            "defaultValue": "<<BASTIONHOST NAME>>",
+            "type": "String"
+        },
+        "publicIPAddresses_externalid": {
+            "defaultValue": "/subscriptions/<<Subscription ID>>/resourceGroups/<<ResourceGroup Name>>/providers/Microsoft.Network/publicIPAddresses/<<Public IP Address>>",
+            "type": "String"
+        },
+        "virtualNetworks_externalid": {
+            "defaultValue": "/subscriptions/<<Subscription ID>>/resourceGroups/<<ResourceGroup Name>>/providers/Microsoft.Network/virtualNetworks/<<VNet Name>>",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/bastionHosts",
+            "apiVersion": "2022-01-01",
+            "name": "[parameters('bastionHosts_name')]",
+            "location": "<<Location>>",
+            "sku": {
+                "name": "<<Tier>>"
+            },
+            "properties": {
+                "dnsName": "bst-7384a024-b480-4a2b-b706-50c1d0781600.bastion.azure.com",
+                "scaleUnits": 2,
+                "enableTunneling": false,
+                "enableIpConnect": false,
+                "disableCopyPaste": false,
+                "ipConfigurations": [
+                    {
+                        "name": "IpConf",
+                        "id": "[concat(resourceId('Microsoft.Network/bastionHosts', parameters('bastionHosts_name')), '/bastionHostIpConfigurations/IpConf')]",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_externalid'), '/subnets/AzureBastionSubnet')]"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
